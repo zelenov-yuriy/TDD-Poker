@@ -1,46 +1,22 @@
 package tdd.poker;
 
-public class Combination {
+public class Set {
     private final Card[] cards;
-    private final int priority;
-    private final String strType;
 
-    /*
-     * priority - strType
-     * -----------------
-     * 0 - Highest Card
-     * 1 - Pair
-     * 2 - Two Pairs
-     * 3 - Three
-     * 4 - Straight
-     * 5 - Flush
-     * 6 - Full House
-     * 7 - Four
-     * 8 - Straight Flush
-     */
+    public Set(Card firstCard, Card secondCard, Card thirdCard, Card fourthCard, Card fifthCard) {
+        this.cards = new Card[5];
 
-    public Combination(Card[] cards) {
-        this.cards = cards;
+        cards[0] = firstCard;
+        cards[1] = secondCard;
+        cards[2] = thirdCard;
+        cards[3] = fourthCard;
+        cards[4] = fifthCard;
+
         sortCards();
-        priority = combIdent();
-        strType = typeIdent();
-    }
-    public int getPriority() {
-        return priority;
     }
 
     public Card getCard(int n) {
         return cards[n];
-    }
-
-    @Override
-    public String toString() {
-        return strType + '\n'
-                + cards[0].toString() + '\n'
-                + cards[1].toString() + '\n'
-                + cards[2].toString() + '\n'
-                + cards[3].toString() + '\n'
-                + cards[4].toString() + '\n';
     }
 
     public void sortCards() {
@@ -55,7 +31,7 @@ public class Combination {
         }
     }
 
-    private int combIdent() {
+    public int recognize() {
         if (isAPair()) {
             if (isATwoPairs()) {
                 if (isAFullHouse())
@@ -153,17 +129,12 @@ public class Combination {
         return result;
     }
 
-    private String typeIdent() {
-        return switch (priority) {
-            case 1 -> "Pair";
-            case 2 -> "Two Pairs";
-            case 3 -> "Three";
-            case 4 -> "Straight";
-            case 5 -> "Flush";
-            case 6 -> "Full House";
-            case 7 -> "Four";
-            case 8 -> "Straight Flush";
-            default -> "Highest Card";
-        };
+    @Override
+    public String toString() {
+        return    cards[0].toString() + '\n'
+                + cards[1].toString() + '\n'
+                + cards[2].toString() + '\n'
+                + cards[3].toString() + '\n'
+                + cards[4].toString() + '\n';
     }
 }

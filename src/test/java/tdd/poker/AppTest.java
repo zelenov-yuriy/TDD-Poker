@@ -1,5 +1,7 @@
 package tdd.poker;
 
+import tdd.poker.combinations.*;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,64 +45,53 @@ class AppTest {
     public void sortCardsTest() {
         Deck deck = new Deck();
         deck.shuffle();
-        Card[] cards =
-                {deck.getCard(0), deck.getCard(1), deck.getCard(2), deck.getCard(3), deck.getCard(4)};
-        Combination combination = new Combination(cards);
+        Set set = new Set(deck.getCard(0), deck.getCard(1), deck.getCard(2), deck.getCard(3), deck.getCard(4));
         boolean exceptionThrown = false;
         try {
-            combination.sortCards();
+            set.sortCards();
         } catch (IndexOutOfBoundsException e) {
             exceptionThrown = true;
         }
         assertFalse(exceptionThrown);
-        System.out.print(combination);
+        System.out.print(set);
         System.out.println("sortCardsTest - passed");
     }
 
     @Test
-    public void combIdentTest() {
+    public void recognizeTest() {
         Deck deck = new Deck();
-        Card[] highestCard =
-                {deck.getCard(26), deck.getCard(17), deck.getCard(0), deck.getCard(50), deck.getCard(34)};
-        Card[] pair =
-                {deck.getCard(34), deck.getCard(50), deck.getCard(26), deck.getCard(0), deck.getCard(1)};
-        Card[] twoPairs =
-                {deck.getCard(0), deck.getCard(5), deck.getCard(1), deck.getCard(39), deck.getCard(7)};
-        Card[] three =
-                {deck.getCard(1), deck.getCard(0), deck.getCard(39), deck.getCard(7), deck.getCard(2)};
-        Card[] straight1 =
-                {deck.getCard(31), deck.getCard(33), deck.getCard(21), deck.getCard(24), deck.getCard(38)};
-        Card[] straight2 =
-                {deck.getCard(5), deck.getCard(1), deck.getCard(49), deck.getCard(9), deck.getCard(14)};
-        Card[] flush =
-                {deck.getCard(17), deck.getCard(9), deck.getCard(37), deck.getCard(29), deck.getCard(1)};
-        Card[] fullHouse =
-                {deck.getCard(44), deck.getCard(45), deck.getCard(0), deck.getCard(47), deck.getCard(3)};
-        Card[] four =
-                {deck.getCard(16), deck.getCard(19), deck.getCard(42), deck.getCard(18), deck.getCard(17)};
-        Card[] straightFlush =
-                {deck.getCard(33), deck.getCard(41), deck.getCard(37), deck.getCard(45), deck.getCard(29)};
 
-        Combination highestCardComb = new Combination(highestCard);
-        Combination pairComb = new Combination(pair);
-        Combination twoPairsComb = new Combination(twoPairs);
-        Combination threeComb = new Combination(three);
-        Combination straight1Comb = new Combination(straight1);
-        Combination straight2Comb = new Combination(straight2);
-        Combination flushComb = new Combination(flush);
-        Combination fullHouseComb = new Combination(fullHouse);
-        Combination fourComb = new Combination(four);
-        Combination straightFlushComb = new Combination(straightFlush);
+        Set highestCardSet = new Set(deck.getCard(26), deck.getCard(17), deck.getCard(0), deck.getCard(50), deck.getCard(34));
+        Set pairSet = new Set(deck.getCard(34), deck.getCard(50), deck.getCard(26), deck.getCard(0), deck.getCard(1));
+        Set twoPairsSet = new Set(deck.getCard(0), deck.getCard(5), deck.getCard(1), deck.getCard(39), deck.getCard(7));
+        Set threeSet = new Set(deck.getCard(1), deck.getCard(0), deck.getCard(39), deck.getCard(7), deck.getCard(2));
+        Set straight1Set = new Set(deck.getCard(31), deck.getCard(33), deck.getCard(21), deck.getCard(24), deck.getCard(38));
+        Set straight2Set = new Set(deck.getCard(5), deck.getCard(1), deck.getCard(49), deck.getCard(9), deck.getCard(14));
+        Set flushSet = new Set(deck.getCard(17), deck.getCard(9), deck.getCard(37), deck.getCard(29), deck.getCard(1));
+        Set fullHouseSet = new Set(deck.getCard(44), deck.getCard(45), deck.getCard(0), deck.getCard(47), deck.getCard(3));
+        Set fourSet = new Set(deck.getCard(16), deck.getCard(19), deck.getCard(42), deck.getCard(18), deck.getCard(17));
+        Set straightFlushSet = new Set(deck.getCard(33), deck.getCard(41), deck.getCard(37), deck.getCard(45), deck.getCard(29));
 
-        System.out.println(highestCardComb);
-        System.out.println(pairComb);
-        System.out.println(twoPairsComb);
-        System.out.println(threeComb);
-        System.out.println(straight1Comb);
-        System.out.println(straight2Comb);
-        System.out.println(flushComb);
-        System.out.println(fullHouseComb);
-        System.out.println(fourComb);
-        System.out.println(straightFlushComb);
+        assertEquals(0, highestCardSet.recognize());
+        assertEquals(1, pairSet.recognize());
+        assertEquals(2, twoPairsSet.recognize());
+        assertEquals(3, threeSet.recognize());
+        assertEquals(4, straight1Set.recognize());
+        assertEquals(4, straight2Set.recognize());
+        assertEquals(5, flushSet.recognize());
+        assertEquals(6, fullHouseSet.recognize());
+        assertEquals(7, fourSet.recognize());
+        assertEquals(8, straightFlushSet.recognize());
+
+        System.out.println(highestCardSet);
+        System.out.println(pairSet);
+        System.out.println(twoPairsSet);
+        System.out.println(threeSet);
+        System.out.println(straight1Set);
+        System.out.println(straight2Set);
+        System.out.println(flushSet);
+        System.out.println(fullHouseSet);
+        System.out.println(fourSet);
+        System.out.println(straightFlushSet);
     }
 }
