@@ -62,7 +62,7 @@ public class TwoPairs extends Combination {
 
     @Override
     public String toString() {
-        return  "Two Pairs:"
+        return  "Two Pairs:" + '\n'
                 + set.getCard(0).toString() + '\n'
                 + set.getCard(1).toString() + '\n'
                 + set.getCard(2).toString() + '\n'

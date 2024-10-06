@@ -25,7 +25,7 @@ public class HighestCard extends Combination {
 
     @Override
     public String toString() {
-        return  "Highest Card:"
+        return  "Highest Card:" + '\n'
                 + set.getCard(0).toString() + '\n'
                 + set.getCard(1).toString() + '\n'
                 + set.getCard(2).toString() + '\n'

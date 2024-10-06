@@ -14,6 +14,7 @@ public class Pair extends Combination {
 
         rank1 = getPairRank(this.set);
         rank2 = getPairRank(comb.set);
+
         if (rank1 > rank2)
             return 1;
         if (rank1 < rank2)
@@ -47,6 +48,8 @@ public class Pair extends Combination {
 
         for (int i = 4; i > -1; i--) {
             rank = set.getCard(i).getDeckNumber() / 4;
+            if (i == 0)
+                return rank;
             if (set.getCard(i - 1).getDeckNumber() / 4 != rank) {
                 if (count == precedence)
                     return rank;
@@ -59,7 +62,7 @@ public class Pair extends Combination {
 
     @Override
     public String toString() {
-        return  "Pair:"
+        return  "Pair:" + '\n'
                 + set.getCard(0).toString() + '\n'
                 + set.getCard(1).toString() + '\n'
                 + set.getCard(2).toString() + '\n'

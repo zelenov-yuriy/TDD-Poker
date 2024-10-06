@@ -57,7 +57,7 @@ public class Four extends Combination {
 
     @Override
     public String toString() {
-        return  "Four:"
+        return  "Four:" + '\n'
                 + set.getCard(0).toString() + '\n'
                 + set.getCard(1).toString() + '\n'
                 + set.getCard(2).toString() + '\n'

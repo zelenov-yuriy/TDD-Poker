@@ -59,7 +59,7 @@ public class FullHouse extends Combination {
 
     @Override
     public String toString() {
-        return  "FullHouse:"
+        return  "FullHouse:" + '\n'
                 + set.getCard(0).toString() + '\n'
                 + set.getCard(1).toString() + '\n'
                 + set.getCard(2).toString() + '\n'

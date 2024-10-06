@@ -128,13 +128,4 @@ public class Set {
             result = true;
         return result;
     }
-
-    @Override
-    public String toString() {
-        return    cards[0].toString() + '\n'
-                + cards[1].toString() + '\n'
-                + cards[2].toString() + '\n'
-                + cards[3].toString() + '\n'
-                + cards[4].toString() + '\n';
-    }
 }

@@ -48,6 +48,8 @@ public class Three extends Combination {
 
         for (int i = 4; i > -1; i--) {
             rank = set.getCard(i).getDeckNumber() / 4;
+            if (i == 0)
+                return rank;
             if (set.getCard(i - 1).getDeckNumber() / 4 != rank) {
                 if (count == precedence)
                     return rank;
@@ -60,7 +62,7 @@ public class Three extends Combination {
 
     @Override
     public String toString() {
-        return  "Three:"
+        return  "Three:" + '\n'
                 + set.getCard(0).toString() + '\n'
                 + set.getCard(1).toString() + '\n'
                 + set.getCard(2).toString() + '\n'

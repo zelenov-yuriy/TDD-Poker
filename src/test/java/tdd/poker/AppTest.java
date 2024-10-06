@@ -1,7 +1,5 @@
 package tdd.poker;
 
-import tdd.poker.combinations.*;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,7 +56,7 @@ class AppTest {
     }
 
     @Test
-    public void recognizeTest() {
+    public void setRecognizeTest() {
         Deck deck = new Deck();
 
         Set highestCardSet = new Set(deck.getCard(26), deck.getCard(17), deck.getCard(0), deck.getCard(50), deck.getCard(34));
@@ -82,16 +80,5 @@ class AppTest {
         assertEquals(6, fullHouseSet.recognize());
         assertEquals(7, fourSet.recognize());
         assertEquals(8, straightFlushSet.recognize());
-
-        System.out.println(highestCardSet);
-        System.out.println(pairSet);
-        System.out.println(twoPairsSet);
-        System.out.println(threeSet);
-        System.out.println(straight1Set);
-        System.out.println(straight2Set);
-        System.out.println(flushSet);
-        System.out.println(fullHouseSet);
-        System.out.println(fourSet);
-        System.out.println(straightFlushSet);
     }
 }

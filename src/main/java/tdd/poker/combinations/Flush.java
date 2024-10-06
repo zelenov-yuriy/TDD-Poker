@@ -25,7 +25,7 @@ public class Flush extends Combination {
 
     @Override
     public String toString() {
-        return  "Flush:"
+        return  "Flush:" + '\n'
                 + set.getCard(0).toString() + '\n'
                 + set.getCard(1).toString() + '\n'
                 + set.getCard(2).toString() + '\n'
