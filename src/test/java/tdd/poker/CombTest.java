@@ -249,6 +249,7 @@ public class CombTest {
 
         assertEquals(1, twoPairsComb13.compare(twoPairsComb14));
     }
+
     @Test
     public void threeCompare() {
         Deck deck = new Deck();
@@ -341,5 +342,104 @@ public class CombTest {
         Combination threeComb14 = new Three(threeSet14);
 
         assertEquals(1, threeComb13.compare(threeComb14));
+    }
+
+    @Test
+    public void straightCompare() {
+        Deck deck = new Deck();
+
+        Set straightSet1 = new Set(deck.getCard(17), deck.getCard(20), deck.getCard(8), deck.getCard(13), deck.getCard(27));
+        Set straightSet2 = new Set(deck.getCard(33), deck.getCard(25), deck.getCard(36), deck.getCard(22), deck.getCard(30));
+
+        assertEquals(4, straightSet1.recognize());
+        assertEquals(4, straightSet2.recognize());
+
+        Combination straightComb1 = new Straight(straightSet1);
+        Combination straightComb2 = new Straight(straightSet2);
+
+        assertEquals(-1, straightComb1.compare(straightComb2));
+
+        //---------------------------------------------------------------------------------------------------------------------------------
+
+        Set straightSet3 = new Set(deck.getCard(9), deck.getCard(51), deck.getCard(1), deck.getCard(13), deck.getCard(6));
+        Set straightSet4 = new Set(deck.getCard(25), deck.getCard(36), deck.getCard(30), deck.getCard(33), deck.getCard(22));
+
+        assertEquals(4, straightSet3.recognize());
+        assertEquals(4, straightSet4.recognize());
+
+        Combination straightComb3 = new Straight(straightSet3);
+        Combination straightComb4 = new Straight(straightSet4);
+
+        assertEquals(-1, straightComb3.compare(straightComb4));
+
+        //---------------------------------------------------------------------------------------------------------------------------------
+
+        Set straightSet5 = new Set(deck.getCard(37), deck.getCard(30), deck.getCard(25), deck.getCard(34), deck.getCard(22));
+        Set straightSet6 = new Set(deck.getCard(22), deck.getCard(36), deck.getCard(33), deck.getCard(30), deck.getCard(25));
+
+        assertEquals(4, straightSet5.recognize());
+        assertEquals(4, straightSet6.recognize());
+
+        Combination straightComb5 = new Straight(straightSet5);
+        Combination straightComb6 = new Straight(straightSet6);
+
+        assertEquals(0, straightComb5.compare(straightComb6));
+
+        //---------------------------------------------------------------------------------------------------------------------------------
+
+        Set straightSet7 = new Set(deck.getCard(30), deck.getCard(25), deck.getCard(36), deck.getCard(33), deck.getCard(40));
+        Set straightSet8 = new Set(deck.getCard(33), deck.getCard(30), deck.getCard(22), deck.getCard(36), deck.getCard(25));
+
+        assertEquals(4, straightSet7.recognize());
+        assertEquals(4, straightSet8.recognize());
+
+        Combination straightComb7 = new Straight(straightSet7);
+        Combination straightComb8 = new Straight(straightSet8);
+
+        assertEquals(1, straightComb7.compare(straightComb8));
+
+        //---------------------------------------------------------------------------------------------------------------------------------
+
+        Set straightSet9 = new Set(deck.getCard(10), deck.getCard(5), deck.getCard(13), deck.getCard(0), deck.getCard(16));
+        Set straightSet10 = new Set(deck.getCard(13), deck.getCard(50), deck.getCard(0), deck.getCard(10), deck.getCard(5));
+
+        assertEquals(4, straightSet9.recognize());
+        assertEquals(4, straightSet10.recognize());
+
+        Combination straightComb9 = new Straight(straightSet9);
+        Combination straightComb10 = new Straight(straightSet10);
+
+        assertEquals(1, straightComb9.compare(straightComb10));
+    }
+
+    @Test
+    public void flushCompare() {
+        Deck deck = new Deck();
+
+        Set flushSet1 = new Set(deck.getCard(12), deck.getCard(0), deck.getCard(28), deck.getCard(16), deck.getCard(20));
+        Set flushSet2 = new Set(deck.getCard(35), deck.getCard(3), deck.getCard(47), deck.getCard(31), deck.getCard(39));
+
+        assertEquals(5, flushSet1.recognize());
+        assertEquals(5, flushSet2.recognize());
+
+        Combination flushComb1 = new Flush(flushSet1);
+        Combination flushComb2 = new Flush(flushSet2);
+
+        assertEquals(-1, flushComb1.compare(flushComb2));
+
+        //---------------------------------------------------------------------------------------------------------------------------------
+
+        Set flushSet3 = new Set(deck.getCard(12), deck.getCard(0), deck.getCard(28), deck.getCard(16), deck.getCard(20));
+        Set flushSet4 = new Set(deck.getCard(14), deck.getCard(2), deck.getCard(18), deck.getCard(30), deck.getCard(22));
+
+        assertEquals(5, flushSet3.recognize());
+        assertEquals(5, flushSet4.recognize());
+
+        Combination flushComb3 = new Flush(flushSet3);
+        Combination flushComb4 = new Flush(flushSet4);
+
+        assertEquals(0, flushComb3.compare(flushComb4));
+
+
     }
 }
