@@ -1,12 +1,14 @@
 package tdd.poker;
 
+import tdd.poker.cards.prepare.*;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
+class PrepareCardTest {
 
     @BeforeEach
     void setUp() {

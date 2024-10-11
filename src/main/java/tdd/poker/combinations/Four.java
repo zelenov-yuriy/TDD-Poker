@@ -1,6 +1,6 @@
 package tdd.poker.combinations;
 
-import tdd.poker.Set;
+import tdd.poker.cards.prepare.Set;
 
 public class Four extends Combination {
     public Four(Set set) {

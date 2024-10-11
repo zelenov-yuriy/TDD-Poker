@@ -1,5 +1,6 @@
 package tdd.poker;
 
+import tdd.poker.cards.prepare.*;
 import tdd.poker.combinations.*;
 
 import org.junit.jupiter.api.AfterEach;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CombTest {
+public class CombinationTest {
 
     @BeforeEach
     void setUp() {

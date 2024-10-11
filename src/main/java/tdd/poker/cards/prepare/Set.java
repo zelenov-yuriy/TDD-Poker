@@ -1,4 +1,4 @@
-package tdd.poker;
+package tdd.poker.cards.prepare;
 
 public class Set {
     private final Card[] cards;
