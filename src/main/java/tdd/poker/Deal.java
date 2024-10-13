@@ -6,56 +6,35 @@ import tdd.poker.combinations.*;
 public class Deal {
     private Deck deck;
     private Set[] sets;
-    private Combination[] combs;
+    private Player[] players;
     private boolean[] winners;
     private int numOfWinners;
     private int[] combPriorities;
     private int maxCombPriority;
 
 
-    public Deal() {
+    public Deal(int numOfPlayers) {
         deck = new Deck();
         deck.shuffle();
-        sets = new Set[3];
-        sets[0] = new Set(deck.getCard(0), deck.getCard(1), deck.getCard(2), deck.getCard(3), deck.getCard(4));
-        sets[1] = new Set(deck.getCard(5), deck.getCard(6), deck.getCard(7), deck.getCard(8), deck.getCard(9));
-        sets[2] = new Set(deck.getCard(10), deck.getCard(11), deck.getCard(12), deck.getCard(13), deck.getCard(14));
-        combs = new Combination[3];
-        combPriorities = new int[3];
-        winners = new boolean[3];
-    }
-    public void setCombs() {
-        combs[0] = setCombination(sets[0]);
-        combs[1] = setCombination(sets[1]);
-        combs[2] = setCombination(sets[2]);
+        sets = new Set[numOfPlayers];
+        for (int i = 0; i < numOfPlayers; i++)
+            sets[i] = new Set(deck.getCard(i * 5), deck.getCard(i * 5 + 1), deck.getCard(i * 5 + 2),
+                    deck.getCard(i * 5 + 3), deck.getCard(i * 5 + 4));
+        players = new Player[numOfPlayers];
+        for (int i = 0; i < numOfPlayers; i++)
+            players[i] = new Player(i);
+        combPriorities = new int[numOfPlayers];
+        winners = new boolean[numOfPlayers];
     }
 
-    public Combination setCombination(Set set) {
-        switch(set.recognize()) {
-            case 1:
-                return new Pair(set);
-            case 2:
-                return new TwoPairs(set);
-            case 3:
-                return new Three(set);
-            case 4:
-                return new Straight(set);
-            case 5:
-                return new Flush(set);
-            case 6:
-                return new FullHouse(set);
-            case 7:
-                return new Four(set);
-            case 8:
-                return new StraightFlush(set);
-            default:
-                return new HighestCard(set);
-        }
+    public void setPlayersCombs() {
+        for (int i = 0; i < players.length; i++)
+            players[i].setCombination(sets[i]);
     }
 
-    public void showCombs() {
-        for(Combination combination: combs)
-            System.out.println(combination);
+    public void showPlayersCombs() {
+        for (Player player : players)
+            player.showCombination();
     }
 
     public void setWinners() {
@@ -67,8 +46,8 @@ public class Deal {
     }
 
     public void setCombPriorities() {
-        for (int i = 0; i < combs.length; i++)
-            combPriorities[i] = combs[i].getCombPriority();
+        for (int i = 0; i < players.length; i++)
+            combPriorities[i] = players[i].getCombPriority();
     }
 
     public void determineMaxCombPriority() {
@@ -89,11 +68,11 @@ public class Deal {
         int i = 0;
         while (!winners[i])
             i++;
-        Combination bestComb = combs[i];
+        Combination bestComb = players[i].getCombination();
         do {
             i++;
             if (winners[i])
-                switch (combs[i].compare(bestComb)) {
+                switch (players[i].getCombination().compare(bestComb)) {
                     case -1:
                         winners[i] = false;
                         break;
@@ -106,7 +85,7 @@ public class Deal {
     }
 
     public void showWinners() {
-        for(boolean result : winners)
+        for (boolean result : winners)
             System.out.println(result);
     }
 }
